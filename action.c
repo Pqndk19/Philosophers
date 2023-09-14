@@ -20,7 +20,7 @@
 
 void	*action(void *philo_id)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)philo_id;
 	if (philo->data->n_philo == 1)
@@ -45,11 +45,12 @@ void	*action(void *philo_id)
 	}
 }
 
-void print(t_philo *philo, t_event_n event_n)
+void	print(t_philo *philo, t_event_n event_n)
 {
-	long long time;
-	const char *write[5] = {EAT_N, SLEEP_N, THINK_N,
-			TAKE_F_N, DEAD_N};
+	long long	time;
+	const char	*write[5] = {EAT_N, SLEEP_N, THINK_N,
+		TAKE_F_N, DEAD_N};
+
 	pthread_mutex_lock(&philo->data->lock_print);
 	pthread_mutex_lock(&philo->data->lock_verify);
 	if (philo->data->dead != 0
@@ -65,9 +66,9 @@ void print(t_philo *philo, t_event_n event_n)
 	pthread_mutex_unlock(&philo->data->lock_print);
 }
 
-int is_dead(t_data *data)
+int	is_dead(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->n_philo)
@@ -88,7 +89,7 @@ int is_dead(t_data *data)
 	return (1);
 }
 
-int everyone_ate(t_data *data)
+int	everyone_ate(t_data *data)
 {
 	pthread_mutex_lock(&data->lock_verify);
 	if (data->satisfied == data->n_philo)
@@ -100,9 +101,9 @@ int everyone_ate(t_data *data)
 	return (1);
 }
 
-void *supervise(void *thread)
+void	*supervise(void *thread)
 {
-	t_data *data;
+	t_data	*data;
 
 	data = (t_data *)thread;
 	while (1)

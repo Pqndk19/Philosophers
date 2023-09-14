@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-int take_forks(t_philo *philo)
+int	take_forks(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->lock_verify);
 	if (philo->data->dead != 0
@@ -39,23 +39,23 @@ int take_forks(t_philo *philo)
 	return (0);
 }
 
-int eat_(t_philo *philo)
+int	eat_(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->lock_verify);
-		if (philo->data->dead != 0
-			|| philo->data->satisfied == philo->data->n_philo)
-		{
-			pthread_mutex_unlock(philo->left_fork);
-			pthread_mutex_unlock(philo->right_fork);
-			pthread_mutex_unlock(&philo->data->lock_verify);
-			return (1);
-		}
+	if (philo->data->dead != 0
+		|| philo->data->satisfied == philo->data->n_philo)
+	{
+		pthread_mutex_unlock(philo->left_fork);
+		pthread_mutex_unlock(philo->right_fork);
 		pthread_mutex_unlock(&philo->data->lock_verify);
-		eat2_(philo);
-		return (0);
+		return (1);
+	}
+	pthread_mutex_unlock(&philo->data->lock_verify);
+	eat2_(philo);
+	return (0);
 }
 
-void eat2_(t_philo *philo)
+void	eat2_(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->lock_live);
 	print(philo, EATIN);
@@ -65,7 +65,7 @@ void eat2_(t_philo *philo)
 	{
 		philo->times_eat++;
 		if (philo->times_eat == philo->data->times_must_eat)
-			philo->data->satisfied++;	
+			philo->data->satisfied++;
 	}
 	pthread_mutex_unlock(&philo->data->lock_verify);
 	pthread_mutex_unlock(&philo->lock_live);
@@ -74,7 +74,7 @@ void eat2_(t_philo *philo)
 	pthread_mutex_unlock(philo->right_fork);
 }
 
-int sleep_(t_philo *philo)
+int	sleep_(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->lock_verify);
 	if (philo->data->dead != 0
@@ -89,7 +89,7 @@ int sleep_(t_philo *philo)
 	return (0);
 }
 
-int think_(t_philo *philo)
+int	think_(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->lock_verify);
 	if (philo->data->dead != 0

@@ -19,10 +19,10 @@ int	is_digit(int nbr)
 	return (0);
 }
 
-int is_num(char **argv)
+int	is_num(char **argv)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 1;
 	while (argv[i])
@@ -39,9 +39,9 @@ int is_num(char **argv)
 	return (0);
 }
 
-int is_big(int argc, char **argv)
+int	is_big(int argc, char **argv)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	while (i < argc)

@@ -12,9 +12,9 @@
 
 #include "philo.h"
 
-void end_of_the_world(t_data *data)
+void	end_of_the_world(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->n_philo)
@@ -27,7 +27,7 @@ void end_of_the_world(t_data *data)
 	pthread_mutex_destroy(&data->lock_print);
 }
 
-int check_args(int argc, char **argv)
+int	check_args(int argc, char **argv)
 {
 	if (argc < 5 || argc > 6)
 	{
@@ -42,12 +42,12 @@ int check_args(int argc, char **argv)
 	if (is_big(argc, argv) != 0)
 	{
 		error_msg(ARG_ERROR);
-		return (1);		
+		return (1);
 	}
 	return (0);
 }
 
-void init(t_data *data, int argc, char **argv)
+void	init(t_data *data, int argc, char **argv)
 {
 	data->n_philo = ft_atoi(argv[1]);
 	data->time_die = ft_atoi(argv[2]);
@@ -62,9 +62,9 @@ void init(t_data *data, int argc, char **argv)
 	data->satisfied = 0;
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_data *data;
+	t_data	*data;
 
 	if (check_args(argc, argv) != 0)
 		return (0);

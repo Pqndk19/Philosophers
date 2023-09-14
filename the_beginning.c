@@ -12,9 +12,9 @@
 
 #include "philo.h"
 
-int join_threads(t_data *data)
+int	join_threads(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->n_philo)
@@ -28,9 +28,9 @@ int join_threads(t_data *data)
 	return (0);
 }
 
-int threads_creation(t_data *data)
+int	threads_creation(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->n_philo)
@@ -46,9 +46,9 @@ int threads_creation(t_data *data)
 	return (0);
 }
 
-int philos_creation(t_data *data)
+int	philos_creation(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	data->all_philos = malloc(sizeof(t_philo) * data->n_philo);
@@ -69,12 +69,12 @@ int philos_creation(t_data *data)
 			return (1);
 		i++;
 	}
-	return (0);	
+	return (0);
 }
 
-int forks_creation(t_data *data)
+int	forks_creation(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	data->forks = malloc(sizeof(pthread_mutex_t) * (data->n_philo));
@@ -93,7 +93,7 @@ int forks_creation(t_data *data)
 	return (0);
 }
 
-int the_beginning(t_data *data)
+int	the_beginning(t_data *data)
 {
 	if (forks_creation(data) != 0)
 	{
